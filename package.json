@@ -4,7 +4,6 @@
   "sideEffects": false,
   "version": "0.2.1",
   "scripts": {
-    "install": "npm install --f",
     "dev": "shopify hydrogen dev",
     "build": "shopify hydrogen build",
     "preview": "npm run build && shopify hydrogen preview",

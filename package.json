@@ -4,6 +4,7 @@
   "sideEffects": false,
   "version": "0.2.1",
   "scripts": {
+    "install": "pnpm install",
     "dev": "shopify hydrogen dev",
     "build": "shopify hydrogen build",
     "preview": "npm run build && shopify hydrogen preview",
@@ -60,6 +61,6 @@
     "typescript": "^4.9.5"
   },
   "engines": {
-    "node": ">=17"
+    "node": ">=17.9.1
   }
 }

@@ -41,9 +41,6 @@ export async function loader({params, context}: LoaderArgs) {
     variables: {handle: 'freestyle'},
   });
 
-  console.log(shop);
-  console.log(hero);
-
   const seo = seoPayload.home();
 
   return defer(

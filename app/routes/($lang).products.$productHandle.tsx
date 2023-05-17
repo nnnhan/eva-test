@@ -46,6 +46,7 @@ import type {Product} from 'schema-dts';
 import {routeHeaders, CACHE_SHORT} from '~/data/cache';
 
 export const headers = routeHeaders;
+const domain = 'https://de2-shop.myshopify.com';
 
 export async function loader({params, request, context}: LoaderArgs) {
   const {productHandle} = params;
@@ -72,6 +73,40 @@ export async function loader({params, request, context}: LoaderArgs) {
 
   if (!product?.id) {
     throw new Response('product', {status: 404});
+  }
+  const productId = product.id.split('/')[4];
+  const getProductVariants: any = await fetch(
+    `${domain}/admin/api/2023-04/products/${productId}/variants.json`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Access-Token': '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',
+      },
+    },
+  ).then((data) => data.json());
+  const productQuantity = getProductVariants.variants[0]?.inventory_quantity;
+  const productInventoryId = getProductVariants.variants[0]?.inventory_item_id;
+  // Update product quantity
+  if (productQuantity <= 1) {
+    const body = {
+      location_id: 83844464949,
+      inventory_item_id: productInventoryId,
+      available_adjustment: 10,
+    };
+
+    const res = await fetch(
+      `${domain}/admin/api/2023-04/inventory_levels/adjust.json`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': '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',
+        },
+        body: JSON.stringify(body),
+      },
+    ).then((data) => data.json());
+    console.log('UPDATED QUANTITY:', res);
   }
 
   const recommended = getRecommendedProducts(context.storefront, product.id);

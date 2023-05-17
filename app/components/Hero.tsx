@@ -95,8 +95,6 @@ interface SpreadMediaProps {
 }
 
 function SpreadMedia({data, loading, sizes}: SpreadMediaProps) {
-  console.log(data);
-  
   return (
     <MediaFile
       data={data}

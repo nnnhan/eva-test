@@ -185,6 +185,21 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl: string}) {
   );
 }
 
+function CartWishlistActions({checkoutUrl}: {checkoutUrl: string}) {
+  if (!checkoutUrl) return null;
+
+  return (
+    <div className="flex flex-col mt-2">
+      <a href={checkoutUrl} target="_self">
+        <Button as="span" width="full">
+          Create A Wishlist
+        </Button>
+      </a>
+      {/* @todo: <CartShopPayButton cart={cart} /> */}
+    </div>
+  );
+}
+
 function CartSummary({
   cost,
   layout,
@@ -416,6 +431,7 @@ export function CartEmpty({
         <div>
           <Button onClick={onClose}>Continue shopping</Button>
         </div>
+        
       </section>
       <section className="grid gap-8 pt-16">
         <FeaturedProducts

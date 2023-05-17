@@ -1,12 +1,13 @@
-# Hydrogen template: Demo Store
+# Hydrogen template: DE2 Store
 
-Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [Remix](https://remix.run/), Shopify’s full stack web framework. This template contains a **full-featured setup** of components, queries and tooling to get started with Hydrogen.
+This project is using Shopify Hydrogen platform to serve both client and server side.
 
 [Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
 [Get familiar with Remix](https://remix.run/docs/en/v1)
 
 ## What's included
 
+- PNPM
 - Remix
 - Hydrogen
 - Oxygen
@@ -18,26 +19,21 @@ Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dov
 - Tailwind CSS (via PostCSS)
 - Full-featured setup of components and routes
 
+## What I did for this challenge
+
+- A store using Hydrogen with default template
+- Connect to Shopify partner using Storefront Graphql and query all Products and Collections
+- Take 1 additional task to use Shopify admin webhook to update the inventory quantity when user open a product but it's run out of stock
+
 ## Getting started
 
 **Requirements:**
 
-- Node.js version 16.14.0 or higher
+- Node.js version 17 or higher
+- PNPM (If you don't have it please install using `NPM I -G PNPM`
 
-```bash
-npm create @shopify/hydrogen@latest -- --template demo-store
-```
+**Steps to run:**
 
-Remember to update `.env` with your shop's domain and Storefront API token!
-
-## Building for production
-
-```bash
-npm run build
-```
-
-## Local development
-
-```bash
-npm run dev
-```
+- pnpm i
+- pnpm dev
+- Then you should access to the store at localhost:3000
